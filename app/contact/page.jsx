@@ -2,7 +2,7 @@ import { FaGithub } from "react-icons/fa";
 import { GoMail, GoPerson } from "react-icons/go";
 import Link from "next/link";
 import { FaLinkedin } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaWhatsapp, FaXTwitter } from "react-icons/fa6";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import data from "../../data.json";
@@ -41,7 +41,7 @@ export default async function Contacts(props) {
 
   githubSocials.forEach((s) => {
     switch (s.provider) {
-      case "linkedin":
+      case "linkedin".includes("wa"):
         contacts.push({
           icon: <FaLinkedin size={20} />,
           href: s.url,
@@ -61,12 +61,13 @@ export default async function Contacts(props) {
         break;
       default:
         contacts.push({
-          icon: <GoPerson size={20} />,
+          icon: <FaWhatsapp size={20} />,
+          label: s.provider,
           href: s.url,
           // Extract domain from url.
           label: s.url.split("/")[2],
           // Extract last part of the url. Might not make sense in some cases.
-          // handle: s.url.split("/").pop(),
+          handle: `+${s.url.split("/").pop()}`,
         });
         break;
     }
