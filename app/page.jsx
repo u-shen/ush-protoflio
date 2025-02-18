@@ -81,7 +81,7 @@ const LandingComponent = async ({ searchParams: { customUsername } }) => {
           <Suspense
             fallback={<div className="w-full h-px min-h-28">Loading...</div>}
           >
-            <div className="w-full h-px min-h-28">
+            <div className="w-lg h-px min-h-28">
               <UserText promise={promise} />
               <ProfileOrganizations username={username} />
               <RecentActivity username={username} />
